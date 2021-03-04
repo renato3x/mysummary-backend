@@ -1,0 +1,7 @@
+# folders
+node_modules
+dist
+.vscode
+
+# environment variables
+.env
