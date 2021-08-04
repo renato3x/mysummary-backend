@@ -1,5 +1,5 @@
 {
-  "name": "pdflow-backend",
+  "name": "mysummary-backend",
   "version": "1.0.0",
   "main": "app.js",
   "license": "MIT",
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/renato3x/pdflow-backend"
+    "url": "https://github.com/renato3x/mysummary-backend"
   },
   "author": "Renato Pereira <pereirarenato21@gmail.com>"
 }
