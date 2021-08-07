@@ -4,6 +4,9 @@ import htmlService from '../services/htmlGeneratorService'
 import pdfService from '../services/pdfGeneratorService'
 import path from 'path'
 import io from '../app'
+import dotenv from 'dotenv'
+
+dotenv.config({path: path.resolve(__dirname, '..', '..', '.env')})
 
 export default {
   async create(request = req, response = res) {
@@ -29,7 +32,7 @@ export default {
 
         io.emit('updateRequestQuantity', {})
 
-        return response.status(201).json({ pdfUrl: `http://localhost:3000/pdfs/${pdfName}` })
+        return response.status(201).json({ pdfUrl: `${process.env.APPLICATION_URL}/pdfs/${pdfName}` })
       } catch (error) {
         return response.status(500).json({ message: 'Error generating pdf file' })
       }

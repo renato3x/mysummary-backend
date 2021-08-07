@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 //socket io
-const webSocketService = new WebSocketService(io, connect('http://localhost:3000'))
+const webSocketService = new WebSocketService(io, connect(`${process.env.APPLICATION_URL}`))
 webSocketService.start()
 
 //routes
@@ -38,7 +38,7 @@ app.use('/pdfs', express.static(path.join(__dirname, 'pdfs')))
 //server init
 const port = process.env.PORT || 3333
 server.listen(port, () => {
-  console.log(`Server open in port ${port}`)
+  console.log(`Server open in port ${port} ${process.env.APPLICATION_URL}`)
 })
 
 export default io
