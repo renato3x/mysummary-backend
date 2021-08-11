@@ -38,7 +38,7 @@ app.use('/pdfs', express.static(path.join(__dirname, 'pdfs')))
 //server init
 const port = process.env.PORT || 3333
 server.listen(port, () => {
-  console.log(`Server open in port ${port} ${process.env.APPLICATION_URL}`)
+  console.log(`Server open in port ${port}`)
 })
 
 export default io
