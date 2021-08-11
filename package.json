@@ -4,8 +4,8 @@
   "main": "app.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/app",
-    "build": "babel src/ --out-dir dist --copy-files",
+    "dev": "nodemon src/app",
+    "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "node dist/app"
   },
   "dependencies": {
@@ -19,11 +19,8 @@
     "socket.io-client": "^3.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "sucrase": "^3.20.1"
   },
   "repository": {
     "type": "git",
