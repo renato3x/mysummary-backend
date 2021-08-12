@@ -5,7 +5,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/app",
-    "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "node dist/app"
   },
   "dependencies": {
