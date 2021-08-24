@@ -23,3 +23,4 @@ This tool has as main objective to create PDF files with a simple summary of con
 **Renato Pereira**, programming enthusiast. Currently aged 17, he is a full stack programmer with more expertise in Backend programming with Node.js. In the area of programming for 3 years.
 
 **_Visit Renato Pereira's profile by [clicking here](https://github.com/renato3x)_**
+**_Read the docs [clicking here](documentation.md)_**
