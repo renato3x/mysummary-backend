@@ -413,15 +413,14 @@ fetch(URL, {
   body: {
     pdfTitle: 'My PDF',
     url: 'https://my-url.com'
+  },
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
   }
 }).then(response => {
   response.json().then(data => {
     console.log(data)
-
-    /**
-     * @returns
-     * { url: '1629769999719-my_pdf.pdf' }
-     */
   })
 })
 
