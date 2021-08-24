@@ -1,7 +1,7 @@
-# PDFLOW - BACKEND
+# My Summary - Backend
 [![GitHub stars](https://img.shields.io/github/stars/renato3x/pdflow-backend?style=social&label=Star&maxAge=2592000)](https://github.com/renato3x/pdflow-backend/stargazers/) [![GitHub forks](https://img.shields.io/github/forks/renato3x/pdflow-backend?style=social&label=Fork&maxAge=2592000)](https://github.com/renato3x/pdflow-backend/network) [![MIT license](https://img.shields.io/badge/License-MIT-green.svg)](https://lbesson.mit-license.org/)
 ## Resume
-API used in the **PDFLOW** project for generating dynamic PDF files made in Javascript
+API used in the **My Summary** project for generating dynamic PDF files made in Javascript
 
 ## About The Project
 This tool has as main objective to create PDF files with a simple summary of contents from other sites, such as Wikipedia, helping students, college students and even teachers with a summary base of a specific subject, so that they can make a deepening from of the summary created.
