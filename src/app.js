@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import socketIO from 'socket.io'
 import { io as connect } from 'socket.io-client'
 import WebSocketService from './services/WebSocketService'
+import mongoose from 'mongoose'
 
 //.dot env init
 dotenv.config({path: path.join(__dirname, '..', '.env')})
@@ -26,6 +27,9 @@ app.use(cors())
 //body parsing
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
+//database connection
+import './database/connection'
 
 //socket io
 const webSocketService = new WebSocketService(io, connect(`${process.env.APPLICATION_URL}`))
