@@ -1,3 +1,5 @@
+import RequestService from './RequestService'
+
 export default class WebSocketService {
   constructor(serverSocket, clientSocket) {
     this.serverSocket = serverSocket
@@ -5,9 +7,13 @@ export default class WebSocketService {
 
     this.date = new Date()
     this.requestQuantity = 0
+    this.requestId = ''
+    this.requestService = new RequestService()
   }
 
-  start() {
+  async start() {
+    this.requestId = await this.requestService.createNewRequestInDatabase()
+
     this.serverSocket.on('connection', socket => {
       this.emitRequestQuantity()
     })
