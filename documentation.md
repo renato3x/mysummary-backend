@@ -397,6 +397,17 @@ fetch(URL).then(response => {
         Message: Error generating pdf file
       </td>
     </tr>
+    <tr>
+      <td style="text-align: center">
+        429 (Too Many Requests)
+      </td>
+      <td style="text-align: center">
+        JSON
+      </td>
+      <td style="text-align: center">
+        Message: Too many requests. Please, wait a little bit (try again after 1 minute)
+      </td>
+    </tr>
   </tbody>
 </table>
 
