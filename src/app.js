@@ -7,7 +7,6 @@ import dotenv from 'dotenv'
 import socketIO from 'socket.io'
 import { io as connect } from 'socket.io-client'
 import WebSocketService from './services/WebSocketService'
-import mongoose from 'mongoose'
 
 //.dot env init
 dotenv.config({path: path.join(__dirname, '..', '.env')})
