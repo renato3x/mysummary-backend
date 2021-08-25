@@ -14,12 +14,12 @@ export default class WebSocketService {
   async start() {
     this.requestId = await this.requestService.createNewRequestInDatabase()
 
-    this.serverSocket.on('connection', socket => {
+    this.serverSocket.on('connection', async (socket) => {
       this.emitRequestQuantity()
     })
 
-    this.clientSocket.on('updateRequestQuantity', () => {
-      this.requestQuantity++
+    this.clientSocket.on('updateRequestQuantity', async () => {
+      this.requestQuantity = await this.requestService.updateRequest(this.requestId)
       this.emitRequestQuantity()
     })
 
