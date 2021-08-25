@@ -2,7 +2,8 @@ import { model, Schema } from 'mongoose'
 
 export default model('Request', new Schema({
   quantity: {
-    type: Number
+    type: Number,
+    default: 0
   },
   day: {
     type: Number,
