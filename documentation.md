@@ -109,7 +109,7 @@ From this part of the documentation, the information of each route of this appli
 
 ###### Javascript
 
-```
+```javascript
 const URL = 'https://api-mysummary.herokuapp.com'
 
 fetch(URL).then(response => {
@@ -238,7 +238,7 @@ fetch(URL).then(response => {
 
 ###### Javascript
 
-```
+```javascript
 const URL = 'https://api-mysummary.herokuapp.com/pdfs/1629767554357-my_pdf_file.pdf'
 
 fetch(URL).then(response => {
@@ -404,7 +404,7 @@ fetch(URL).then(response => {
 
 ###### Javascript
 
-```
+```javascript
 const URL = 'https://api-mysummary.herokuapp.com/pdf'
 
 fetch(URL, {
@@ -478,7 +478,7 @@ Having connected socket.io to the API, just listen for the emitted events. Event
 
 ##### Use Example
 
-```
+```javascript
 io.on('requestQuantity', (data) => {
   console.log(`Quantity of archives made today: ${data.requestQuantity}`)
   console.log(`Can files still be made today? ${data.canRequest ? 'Yes!' : 'No!'}`)
