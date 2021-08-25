@@ -1,5 +1,4 @@
 import express from 'express'
-import router from './router'
 import path from 'path'
 import cors from 'cors'
 import { Server } from 'http'
@@ -35,6 +34,7 @@ const webSocketService = new WebSocketService(io, connect(`${process.env.APPLICA
 webSocketService.start()
 
 //routes
+import router from './router'
 app.use(router)
 app.use('/pdfs', express.static(path.join(__dirname, 'pdfs')))
 

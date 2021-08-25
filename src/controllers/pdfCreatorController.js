@@ -4,9 +4,6 @@ import htmlService from '../services/htmlGeneratorService'
 import pdfService from '../services/pdfGeneratorService'
 import path from 'path'
 import io from '../app'
-import dotenv from 'dotenv'
-
-dotenv.config({path: path.resolve(__dirname, '..', '..', '.env')})
 
 export default {
   async create(request = req, response = res) {
