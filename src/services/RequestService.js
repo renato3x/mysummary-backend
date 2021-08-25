@@ -24,12 +24,21 @@ export default class RequestService {
     }
   }
 
-  async updateRequest(id) {
+  async updateRequestQuantity(id) {
     try {
       const request = await Request.findById(id)
       request.quantity++
       await request.save()
 
+      return request.quantity
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async getRequestQuantity(id) {
+    try {
+      const request = await Request.findById(id)
       return request.quantity
     } catch (error) {
       console.log(error)

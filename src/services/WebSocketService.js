@@ -15,20 +15,22 @@ export default class WebSocketService {
     this.requestId = await this.requestService.createNewRequestInDatabase()
 
     this.serverSocket.on('connection', async (socket) => {
+      this.requestQuantity = await this.requestService.getRequestQuantity(this.requestId)
       this.emitRequestQuantity()
     })
 
     this.clientSocket.on('updateRequestQuantity', async () => {
-      this.requestQuantity = await this.requestService.updateRequest(this.requestId)
+      this.requestQuantity = await this.requestService.updateRequestQuantity(this.requestId)
       this.emitRequestQuantity()
     })
 
-    setInterval(() => {
+    setInterval(async () => {
       const actualDate = new Date()
 
       if (actualDate.getDate() != this.date.getDate()) {
         this.date = actualDate
         this.requestQuantity = 0
+        this.requestId = await this.requestService.createNewRequestInDatabase()
 
         this.emitRequestQuantity()
       }
