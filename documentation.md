@@ -14,7 +14,6 @@ If you notice any problems with this documentation, please report them as soon a
 
 # Routes 🛣
 
-
 From this part of the documentation, the information of each route of this application will be passed in detail.
 
 ### GET /
@@ -424,4 +423,64 @@ fetch(URL, {
   })
 })
 
+```
+
+# WebSocket 🌐
+
+Using Socket.io, this API can emit real-time events for interaction mainly in Frontend.
+
+To use this feature, use the Socket.io client. Look for the Socket.io client package for your application (React, Vue, Angular or even without these frameworks) and install it in your application. Once that's done, connect Socket.io to the API using the web URL ([https://api-mysummary.herokuapp.com](https://api-mysummary.herokuapp.com)) or your machine's URL local.
+
+Having connected socket.io to the API, just listen for the emitted events. Events sent to the API consumer are listed below:
+
+### requestQuantity
+
+##### Returns
+<table>
+  <thead>
+    <tr>
+      <td>
+        <b>Name</b>
+      </td>
+      <td>
+        <b>Type</b>
+      </td>
+      <td>
+        <b>Description</b>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        requestQuantity
+      </td>
+      <td>
+        Number
+      </td>
+      <td>
+        Returns the number of requests made in the day. A number ranging from 0 to 100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        canRequest
+      </td>
+      <td>
+        Boolean
+      </td>
+      <td>
+        Returns if it is still possible to generate files on the same day
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+##### Use Example
+
+```
+io.on('requestQuantity', (data) => {
+  console.log(`Quantity of archives made today: ${data.requestQuantity}`)
+  console.log(`Can files still be made today? ${data.canRequest ? 'Yes!' : 'No!'}`)
+})
 ```

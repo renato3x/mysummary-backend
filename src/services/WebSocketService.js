@@ -9,19 +9,12 @@ export default class WebSocketService {
 
   start() {
     this.serverSocket.on('connection', socket => {
-      socket.emit('requestQuantity', {
-        requestQuantity: this.requestQuantity,
-        canRequest: this.requestQuantity < 100
-      })
+      this.emitRequestQuantity()
     })
 
     this.clientSocket.on('updateRequestQuantity', () => {
       this.requestQuantity++
-
-      this.serverSocket.emit('requestQuantity', {
-        requestQuantity: this.requestQuantity,
-        canRequest: this.requestQuantity < 100
-      })
+      this.emitRequestQuantity()
     })
 
     setInterval(() => {
@@ -31,11 +24,15 @@ export default class WebSocketService {
         this.date = actualDate
         this.requestQuantity = 0
 
-        this.serverSocket.emit('requestQuantity', {
-          requestQuantity: this.requestQuantity,
-          canRequest: this.requestQuantity < 100
-        })
+        this.emitRequestQuantity()
       }
     }, 60 * 1000)
+  }
+
+  emitRequestQuantity() {
+    this.serverSocket.emit('requestQuantity', {
+      requestQuantity: this.requestQuantity,
+      canRequest: this.requestQuantity < 100
+    })
   }
 }
