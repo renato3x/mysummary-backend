@@ -1,11 +1,13 @@
 import RequestService from './RequestService'
+import nodeCron from 'node-cron'
+import fsExtra from 'fs-extra'
+import path from 'path'
 
 export default class WebSocketService {
   constructor(serverSocket, clientSocket) {
     this.serverSocket = serverSocket
     this.clientSocket = clientSocket
 
-    this.date = new Date()
     this.requestQuantity = 0
     this.requestId = ''
     this.requestService = new RequestService()
@@ -24,17 +26,13 @@ export default class WebSocketService {
       this.emitRequestQuantity()
     })
 
-    setInterval(async () => {
-      const actualDate = new Date()
+    nodeCron.schedule('59 23 * * *', async () => {
+      fsExtra.emptyDir(path.resolve(__dirname, '..', 'pdfs'))
+      this.requestId = await this.requestService.createNewRequestInDatabase()
+      this.requestQuantity = await this.requestService.getRequestQuantity(this.requestId)
 
-      if (actualDate.getDate() != this.date.getDate()) {
-        this.date = actualDate
-        this.requestQuantity = 0
-        this.requestId = await this.requestService.createNewRequestInDatabase()
-
-        this.emitRequestQuantity()
-      }
-    }, 60 * 1000)
+      this.emitRequestQuantity()
+    })
   }
 
   emitRequestQuantity() {
