@@ -12,6 +12,6 @@ import pdfCreatorController from './controllers/pdfCreatorController'
 router.get('/', indexController.index)
 
 //pdf creator routes
-router.post('/pdf', rateLimit ,pdfCreatorController.create)
+router.post('/pdf', rateLimit, pdfCreatorController.create)
 
 export default router
