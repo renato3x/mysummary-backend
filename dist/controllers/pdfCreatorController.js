@@ -4,9 +4,6 @@ var _htmlGeneratorService = require('../services/htmlGeneratorService'); var _ht
 var _pdfGeneratorService = require('../services/pdfGeneratorService'); var _pdfGeneratorService2 = _interopRequireDefault(_pdfGeneratorService);
 var _path = require('path'); var _path2 = _interopRequireDefault(_path);
 var _app = require('../app'); var _app2 = _interopRequireDefault(_app);
-var _dotenv = require('dotenv'); var _dotenv2 = _interopRequireDefault(_dotenv);
-
-_dotenv2.default.config({path: _path2.default.resolve(__dirname, '..', '..', '.env')})
 
 exports. default = {
   async create(request = _express.request, response = _express.response) {
