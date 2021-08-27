@@ -22,9 +22,9 @@ export default {
       const dataToCreatePDF = { title: pdfTitle, textsArray }
 
       try {
-        const html = await htmlService(dataToCreatePDF, path.resolve(__dirname, '..', 'template', 'index.ejs'))
+        const html = await htmlService(dataToCreatePDF)
 
-        const pdfName = `${Date.now()}-${pdfTitle.replace(/ /g, '_').toLowerCase()}.pdf`
+        const pdfName = `${Date.now()}_${pdfTitle.replace(/ /g, '_').toLowerCase()}.pdf`
         await pdfService(html, path.resolve(__dirname, '..', 'pdfs', pdfName))
 
         io.emit('updateRequestQuantity', {})
