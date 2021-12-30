@@ -14,13 +14,5 @@ This tool has as main objective to create PDF files with a simple summary of con
 - ![Git](https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white)
 - ![npm](https://img.shields.io/badge/-NPM-CB3837?style=flat-square&logo=npm&logoColor=white)
 
-## The Author Of The Project
-[![Author's image](https://avatars.githubusercontent.com/u/66842838?s=460&u=397bc705eae17498f00f7aa7ce96dc2cead1279c&v=4)](https://github.com/renato3x)
-
-### Renato's Github Stats
-[![Renato's github stats](https://github-readme-stats.vercel.app/api?username=renato3x&theme=blue-green)](https://github.com/anuraghazra/github-readme-stats)
-
-**Renato Pereira**, programming enthusiast. Currently aged 17, he is a full stack programmer with more expertise in Backend programming with Node.js. In the area of programming for 3 years.
-
 **_Visit Renato Pereira's profile by [clicking here](https://github.com/renato3x)_**
 **_Read the docs [clicking here](documentation.md)_**
