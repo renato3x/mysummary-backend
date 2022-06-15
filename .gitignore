@@ -5,3 +5,6 @@ dist/
 
 # environment variables
 .env
+
+#ignoring all pdf files
+src/pdfs/**/*.pdf
