@@ -8,7 +8,9 @@ To consume the API in the development environment, first of all, you need an acc
 
 Having your API KEY in hand, create an .env file with the variable SMMRY_API_KEY with the value of your generated API KEY. Also, add a PORT variable with the port number that the application should run and the APPLICATION_URL variable with the value of the URL that the application can access, for example, **http://localhost:3000** (do not put the slash at the end of the URL).
 
-By following the steps given above, you will be able to test this API on your local machine. However, if you want to use it on the web, just access the link [api-mysummary.herokuapp.com](https://api-mysummary.herokuapp.com).
+By following the steps given above, you will be able to test this API on your local machine. 
+
+**IMPORTANT!!!:** This application was in production. However, after problems with domain and deployment, it was temporarily removed from the air. It will soon be back for public use.
 
 If you notice any problems with this documentation, please report them as soon as possible to correct them.
 
@@ -125,7 +127,7 @@ fetch(URL).then(response => {
 
 ```
 
-### GET /pdfs
+### GET /pdf
 
 ##### Params
 <table>
