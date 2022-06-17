@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const DotEnvPlugin = require('dotenv-webpack')
+const CopyPlugin = require('copy-webpack-plugin')
 
 const path = require('path')
 
@@ -15,6 +16,14 @@ module.exports = {
   plugins: [
     new DotEnvPlugin({
       path: path.join(__dirname, '.env')
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'src/templates',
+          to: '../templates'
+        }
+      ]
     })
   ],
   module: {

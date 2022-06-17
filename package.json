@@ -25,6 +25,7 @@
   "devDependencies": {
     "@sucrase/webpack-loader": "^2.0.0",
     "@types/fs-extra": "^9.0.12",
+    "copy-webpack-plugin": "^11.0.0",
     "dotenv-webpack": "^7.1.0",
     "nodemon": "^2.0.6",
     "sucrase": "^3.20.1",
