@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/app",
-    "start": "node dist/js/app.bundle.js",
+    "start": "node dist/js/app.bundle",
     "build": "webpack"
   },
   "dependencies": {
