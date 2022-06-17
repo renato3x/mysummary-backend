@@ -36,7 +36,6 @@ webSocketService.start()
 //routes
 import router from './router'
 app.use(router)
-app.use('/pdfs', express.static(path.join(__dirname, 'pdfs')))
 
 //server init
 const port = process.env.PORT || 3333

@@ -6,12 +6,13 @@ import rateLimit from './middlewares/rateLimit'
 
 //controllers
 import indexController from './controllers/indexController'
-import pdfCreatorController from './controllers/pdfCreatorController'
+import pdfController from './controllers/pdfController'
 
 //index route
 router.get('/', indexController.index)
 
-//pdf creator routes
-router.post('/pdf', rateLimit, pdfCreatorController.create)
+//pdf routes
+router.post('/pdf', rateLimit, pdfController.create)
+router.get('/pdf/:pdfName', pdfController.getPdf)
 
 export default router

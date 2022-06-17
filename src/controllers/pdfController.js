@@ -29,7 +29,7 @@ export default {
 
         io.emit('updateRequestQuantity', {})
 
-        return response.status(201).json({ pdfUrl: `${process.env.APPLICATION_URL}/pdfs/${pdfName}` })
+        return response.status(201).json({ pdfUrl: `${process.env.APPLICATION_URL}/pdf/${pdfName}` })
       } catch (error) {
         return response.status(500).json({ message: 'Error generating pdf file' })
       }
@@ -37,5 +37,15 @@ export default {
     } catch({ status, message }) {
       return response.status(status).json({ message })
     }
+  },
+
+  async getPdf(request = req, response = res) {
+    const {
+      pdfName
+    } = request.params
+
+    const pdfFilePath = path.join(__dirname, '..', 'pdfs', pdfName)
+
+    return response.sendFile(pdfFilePath)
   }
 }
