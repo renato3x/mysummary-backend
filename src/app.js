@@ -1,16 +1,18 @@
-import express from 'express'
+import dotenv from 'dotenv'
 import path from 'path'
+
+dotenv.config({path: path.join(__dirname, '..', '.env')})
+
+import express from 'express'
 import cors from 'cors'
 import { Server } from 'http'
-import dotenv from 'dotenv'
 import socketIO from 'socket.io'
 import { io as connect } from 'socket.io-client'
 import WebSocketService from './services/WebSocketService'
+import router from './router'
 
-//.dot env init
-dotenv.config({path: path.join(__dirname, '..', '.env')})
+import './database/connection'
 
-//server instance
 const app = express()
 const server = Server(app)
 const io = socketIO(server, {
@@ -18,26 +20,17 @@ const io = socketIO(server, {
     origin: '*'
   }
 })
+const webSocketService = new WebSocketService(io, connect(`${process.env.APPLICATION_URL}`))
 
-//initializing cors
 app.use(cors())
 
-//body parsing
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-//database connection
-import './database/connection'
-
-//socket io
-const webSocketService = new WebSocketService(io, connect(`${process.env.APPLICATION_URL}`))
 webSocketService.start()
 
-//routes
-import router from './router'
 app.use(router)
 
-//server init
 const port = process.env.PORT || 3333
 server.listen(port, () => {
   console.log(`Server open in port ${port}`)
