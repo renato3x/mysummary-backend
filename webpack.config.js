@@ -2,6 +2,8 @@ const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const DotEnvPlugin = require('dotenv-webpack')
 const CopyPlugin = require('copy-webpack-plugin')
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const path = require('path')
 
@@ -39,6 +41,15 @@ module.exports = {
           }
         ]
       }
+    ]
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new HtmlMinimizerPlugin(),
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/
+      })
     ]
   },
   externals: [
