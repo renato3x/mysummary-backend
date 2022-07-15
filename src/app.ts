@@ -1,12 +1,12 @@
 import dotenv from 'dotenv'
 import path from 'path'
 
-dotenv.config({path: path.join(__dirname, '..', '.env')})
+dotenv.config({ path: path.join(__dirname, '..', '.env') })
 
 import express from 'express'
 import cors from 'cors'
 import { Server } from 'http'
-import socketIO from 'socket.io'
+import socketIo from 'socket.io'
 import { io as connect } from 'socket.io-client'
 import WebSocketService from './services/WebSocketService'
 import router from './router'
@@ -14,8 +14,8 @@ import router from './router'
 import './database/connection'
 
 const app = express()
-const server = Server(app)
-const io = socketIO(server, {
+const server = new Server(app)
+const io = new socketIo.Server(server, {
   cors: {
     origin: '*'
   }
@@ -35,5 +35,3 @@ const port = process.env.PORT || 3333
 server.listen(port, () => {
   console.log(`Server open in port ${port}`)
 })
-
-export default io
