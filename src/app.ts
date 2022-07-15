@@ -1,8 +1,3 @@
-import dotenv from 'dotenv'
-import path from 'path'
-
-dotenv.config({ path: path.join(__dirname, '..', '.env') })
-
 import express from 'express'
 import cors from 'cors'
 import { Server } from 'http'
@@ -31,7 +26,4 @@ webSocketService.start()
 
 app.use(router)
 
-const port = process.env.PORT || 3333
-server.listen(port, () => {
-  console.log(`Server open in port ${port}`)
-})
+export { server, io }

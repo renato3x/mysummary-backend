@@ -4,7 +4,7 @@
   "main": "app.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules src/app.ts",
+    "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules src/server",
     "start": "node dist/app",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored"
   },

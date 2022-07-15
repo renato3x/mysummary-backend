@@ -3,7 +3,7 @@ import textSummarizeService from '../services/textSummarizeService'
 import htmlService from '../services/htmlGeneratorService'
 import pdfService from '../services/pdfGeneratorService'
 import path from 'path'
-import io from '../app'
+import { io } from '../app'
 
 export default {
   async create(request = req, response = res) {
