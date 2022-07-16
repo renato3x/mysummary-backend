@@ -6,6 +6,10 @@ import rateLimit from './middlewares/rateLimit'
 
 //controllers
 import pdfController from './controllers/pdfController'
+import IndexController from './controllers/IndexContoller'
+
+// index routes
+router.get('/', IndexController.index)
 
 //pdf routes
 router.post('/pdf', rateLimit, pdfController.create)
