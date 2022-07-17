@@ -3,10 +3,10 @@ import cors from 'cors'
 import { Server } from 'http'
 import socketIo from 'socket.io'
 import { io as connect } from 'socket.io-client'
-import WebSocketService from './services/WebSocketService'
+import WebSocketService from '@services/WebSocketService'
 import router from './router'
 
-import './database/connection'
+import '@database/connection'
 
 const app = express()
 const server = new Server(app)

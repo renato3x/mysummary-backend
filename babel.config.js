@@ -10,6 +10,22 @@ module.exports = {
   plugins: [
     ['inline-dotenv', {
       path: './.env'
+    }],
+    ['module-resolver', {
+      alias: {
+        '@controllers/*': [
+          './src/controllers/*'
+        ],
+        '@database/*': [
+          './src/database/*'
+        ],
+        '@middlewares/*': [
+          './src/middlewares/*'
+        ],
+        '@services/*': [
+          './src/services/*'
+        ]
+      }
     }]
   ],
   ignore: [
