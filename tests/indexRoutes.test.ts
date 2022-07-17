@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import request from 'supertest'
-import { server, io } from '../src/app'
+import { server } from '../src/app'
 
 describe('GET /', () => {
   it('Should return that the response status is 200', async () => {
@@ -24,8 +24,6 @@ describe('GET /', () => {
 })
 
 afterAll(done => {
-  io.close()
-  server.close()
   mongoose.connection.close()
   done()
 })
