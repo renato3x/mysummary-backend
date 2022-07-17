@@ -10,10 +10,21 @@ beforeAll((done) => {
 
 describe('RequestService methods', () => {
   const requestService = new RequestService()
+  let requestId = ''
 
   it('Should generate a new request in database and return the id', async () => {
-    const result = await requestService.createNewRequestInDatabase()
-    expect(typeof result).toBe('string')
+    requestId = await requestService.createNewRequestInDatabase()
+    expect(typeof requestId).toBe('string')
+  })
+
+  it('Should update the quantity of requests of the current request and return the new quantity of requests', async () => {
+    const requestQuantity = await requestService.updateRequestQuantity(requestId)
+    expect(typeof requestQuantity).toBe('number')
+  })
+
+  it('Should return the quantity of the request the current request', async () => {
+    const requestQuantity = await requestService.getRequestQuantity(requestId)
+    expect(typeof requestQuantity).toBe('number')
   })
 })
 

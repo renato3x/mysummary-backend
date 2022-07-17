@@ -1,3 +1,4 @@
+import { CastError, MongooseError } from 'mongoose'
 import Request from '../database/models/Request'
 
 export default class RequestService {
@@ -25,23 +26,33 @@ export default class RequestService {
   }
 
   async updateRequestQuantity(id: any) {
-    /* try {
+    try {
       const request = await Request.findById(id)
-      request.quantity++
-      await request.save()
 
-      return request.quantity
+      if (request) {
+        request.quantity++
+        await request.save()
+  
+        return request.quantity
+      }
+
+      throw new Error('Request do not exists')
     } catch (error) {
-      console.log(error)
-    } */
+      throw new Error('Error at update request')
+    }
   }
 
   async getRequestQuantity(id: any) {
-    /* try {
+    try {
       const request = await Request.findById(id)
-      return request.quantity
+      
+      if (request) {
+        return request.quantity
+      }
+
+      throw new Error('Request do not exists')
     } catch (error) {
-      console.log(error)
-    } */
+      throw new Error('Error at retrieve the request quantity')
+    }
   }
 }
