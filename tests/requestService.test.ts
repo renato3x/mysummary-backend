@@ -11,8 +11,9 @@ beforeAll((done) => {
 describe('RequestService methods', () => {
   const requestService = new RequestService()
 
-  it('Should be return a not null object', () => {
-    expect(requestService).not.toBeNull()
+  it('Should generate a new request in database and return the id', async () => {
+    const result = await requestService.createNewRequestInDatabase()
+    expect(typeof result).toBe('string')
   })
 })
 

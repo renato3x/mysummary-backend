@@ -1,6 +1,7 @@
 import { model, Schema } from 'mongoose'
+import { Request } from 'src/@types/request'
 
-export default model('Request', new Schema({
+export default model<Request>('Request', new Schema({
   quantity: {
     type: Number,
     default: 0

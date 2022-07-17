@@ -20,12 +20,12 @@ export default class RequestService {
         return request._id.toString()
       }
     } catch (error) {
-      console.log(error)
+      throw new Error('Error at create new request')
     }
   }
 
-  async updateRequestQuantity(id) {
-    try {
+  async updateRequestQuantity(id: any) {
+    /* try {
       const request = await Request.findById(id)
       request.quantity++
       await request.save()
@@ -33,15 +33,15 @@ export default class RequestService {
       return request.quantity
     } catch (error) {
       console.log(error)
-    }
+    } */
   }
 
-  async getRequestQuantity(id) {
-    try {
+  async getRequestQuantity(id: any) {
+    /* try {
       const request = await Request.findById(id)
       return request.quantity
     } catch (error) {
       console.log(error)
-    }
+    } */
   }
 }
