@@ -1,4 +1,3 @@
-import { CastError, MongooseError } from 'mongoose'
 import Request from '../database/models/Request'
 
 export default class RequestService {
