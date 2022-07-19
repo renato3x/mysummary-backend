@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose'
-import { Request } from 'src/@types/request'
+import { Request } from 'src/@types/index'
 
 export default model<Request>('Request', new Schema({
   quantity: {
