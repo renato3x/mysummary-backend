@@ -13,22 +13,15 @@ module.exports = {
     }],
     ['module-resolver', {
       alias: {
-        '@controllers/*': [
-          './src/controllers/*'
-        ],
-        '@database/*': [
-          './src/database/*'
-        ],
-        '@middlewares/*': [
-          './src/middlewares/*'
-        ],
-        '@services/*': [
-          './src/services/*'
-        ]
+        '@controllers': './src/controllers',
+        '@database': './src/database',
+        '@middlewares': './src/middlewares',
+        '@services': './src/services'
       }
     }]
   ],
   ignore: [
-    '**/*.spec.ts'
+    '**/*.spec.ts',
+    './src/@types'
   ]
 }

@@ -1,4 +1,4 @@
-import Request from '../database/models/Request'
+import Request from "@database/models/Request"
 
 export default class RequestService {
   async createNewRequestInDatabase() {
