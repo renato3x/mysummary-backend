@@ -7,4 +7,5 @@ dist/
 .env
 
 #ignoring all pdf files
-src/pdfs/**/*.pdf
+pdfs/**/*.pdf
+tests/config/pdfs
