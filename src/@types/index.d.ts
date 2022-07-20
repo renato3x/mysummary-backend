@@ -11,3 +11,8 @@ export interface Summary {
   sm_api_title: string,
   sm_api_content: string,
 }
+
+export interface PdfContent {
+  title: string
+  paragraphs: string[]
+}

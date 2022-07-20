@@ -32,6 +32,7 @@
     "@types/express": "^4.17.13",
     "@types/fs-extra": "^9.0.12",
     "@types/jest": "^28.1.6",
+    "@types/jsdom": "^16.2.15",
     "@types/node": "^18.0.3",
     "@types/supertest": "^2.0.12",
     "babel-plugin-inline-dotenv": "^1.7.0",
