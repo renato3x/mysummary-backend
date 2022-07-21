@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsnd -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules src/index",
     "start": "node dist/index",
-    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored --no-comments",
     "test": "jest --detectOpenHandles --forceExit"
   },
   "dependencies": {
