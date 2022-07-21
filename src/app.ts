@@ -1,21 +1,20 @@
 import express from 'express'
 import cors from 'cors'
-import { Server } from 'http'
+import http from 'http'
 import socketIo from 'socket.io'
-import { io as connect } from 'socket.io-client'
 import WebSocketService from '@services/WebSocketService'
 import router from './router'
 
 import '@database/connection'
 
 const app = express()
-const server = new Server(app)
+const server = new http.Server(app)
 const io = new socketIo.Server(server, {
   cors: {
     origin: '*'
   }
 })
-const webSocketService = new WebSocketService(io, connect(`${process.env.APPLICATION_URL}`))
+const webSocketService = new WebSocketService(io)
 
 app.use(cors())
 
@@ -26,4 +25,4 @@ webSocketService.start()
 
 app.use(router)
 
-export { server, io }
+export { server, io, webSocketService }
