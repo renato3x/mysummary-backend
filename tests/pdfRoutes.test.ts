@@ -3,6 +3,19 @@ import request from 'supertest'
 import { server } from '../src/app'
 
 let pdfUrl: string = ''
+let i = 0
+
+beforeEach((done) => {
+  if (i == 1 || i == 2 || i == 4) {
+    setTimeout(() => {
+      done()
+    }, 60000)
+  } else {
+    done()
+  }
+
+  i++
+}, 61000)
 
 describe('POST /pdf', () => {
   it('Should return status 400 if required parameters in request body are not passed', async () => {
@@ -20,7 +33,7 @@ describe('POST /pdf', () => {
     })
 
     expect(response.statusCode).toBe(400)
-  })
+  }, 30000)
 
   it('It should return status 201 when the pdf is generated correctly along with an object with the url to access the generated pdf', async () => {
     const response = await request(server)
@@ -33,8 +46,8 @@ describe('POST /pdf', () => {
     expect(response.statusCode).toBe(201)
     expect(response.body.pdfUrl).toBeDefined()
 
-    pdfUrl = response.body.pdfUrl
-  })
+    pdfUrl = response.body.pdfUrl.split(process.env.APPLICATION_URL)[1]
+  }, 30000)
 
   it('Should stop generating a new pdf in less than a minute', async () => {
     const response = await request(server)
@@ -49,10 +62,18 @@ describe('POST /pdf', () => {
 })
 
 describe('GET /pdf', () => {
-  it('Should return an pdf file by filename', async () => {
-    const response = await request(server).get(pdfUrl)
+  it('Should return an pdf file by filename', (done) => {
+    request(server)
+    .get(pdfUrl)
+    .end((error, response) => {
+      if (error) {
+        throw error
+      }
 
-    expect(response.headers['Content-Type']).toMatch(/pdf/)
+      expect(response.get('Content-Type')).toContain('application/pdf')
+
+      done()
+    })
   })
 })
 

@@ -1,67 +1,56 @@
-/* import { request as req, response as res } from 'express'
-import textSummarizeService from '../services/textSummarizeService'
-import htmlService from '../services/htmlGeneratorService'
-import pdfService from '../services/pdfGeneratorService'
 import path from 'path'
-import { io } from '../app'
-
-export default {
-  async create(request = req, response = res) {
-    const {
-      pdfTitle,
-      url,
-    } = request.body
-
-    if (!pdfTitle || !url) {
-      return response.status(400).json({ message: 'Insufficient data to generate the pdf' })
-    }
-
-    try {
-      const { sm_api_content: data } = await textSummarizeService(url, 7)
-      const textsArray = data.split('[BREAK]')
-      const dataToCreatePDF = { title: pdfTitle, textsArray }
-
-      try {
-        const html = await htmlService(dataToCreatePDF)
-
-        const pdfName = `${Date.now()}_${pdfTitle.replace(/ /g, '_').toLowerCase()}.pdf`
-        await pdfService(html, path.resolve(__dirname, '..', 'pdfs', pdfName))
-
-        io.emit('updateRequestQuantity', {})
-
-        return response.status(201).json({ pdfUrl: `${process.env.APPLICATION_URL}/pdf/${pdfName}` })
-      } catch (error) {
-        return response.status(500).json({ message: 'Error generating pdf file' })
-      }
-
-    } catch({ status, message }) {
-      return response.status(status).json({ message })
-    }
-  },
-
-  async getPdf(request = req, response = res) {
-    const {
-      pdfName
-    } = request.params
-
-    const pdfFilePath = path.join(__dirname, '..', 'pdfs', pdfName)
-
-    return response.sendFile(pdfFilePath)
-  }
-}
- */
+import slugify from 'slugify'
 import { Request, Response } from 'express'
+import { PdfContent, PdfCreationApiResponse, PdfCreationRequestBody } from 'src/@types'
+import htmlGeneratorService from '@services/htmlGeneratorService'
+import textSummarizeService from '@services/textSummarizeService'
+import pdfGeneratorService from '@services/pdfGeneratorService'
+import { webSocketService } from '../app'
 
 export default class PdfController {
   static async create(request: Request, response: Response) {
-    return response.status(500).json({
-      message: 'route not implemented'
-    })
+    const { title, url } = request.body as PdfCreationRequestBody
+
+    if (!title || !url) {
+      return response.status(400).json({
+        message: 'Insufficient data to generate the pdf'
+      })
+    }
+
+    try {
+      const { sm_api_content: content } = await textSummarizeService(url)
+      const paragraphs = content.split('[BREAK]')
+      const pdfContent: PdfContent = { title, paragraphs }
+
+      try {
+        const html = htmlGeneratorService(pdfContent)
+        const slugTitle = slugify(title, { replacement: '_', lower: true })
+        const pdfName = `${Date.now()}_${slugTitle}.pdf`
+        const pdfFinalPath = path.join(__dirname, '..', 'pdfs', pdfName)
+
+        await pdfGeneratorService(html, pdfFinalPath)
+
+        webSocketService.updateRequestQuantity()
+
+        const jsonResponse: PdfCreationApiResponse = {
+          pdfUrl: `${process.env.APPLICATION_URL}/pdf/${pdfName}`
+        }
+
+        return response.status(201).json(jsonResponse)
+      } catch (error) {
+        return response.status(500).json({ message: 'Error at generate pdf file' })  
+      }
+    } catch (error: any) {
+      const { status, message } = error
+      return response.status(status).json({ message })
+    }
   }
 
   static async getPdf(request: Request, response: Response) {
-    return response.status(500).json({
-      message: 'route not implemented'
-    })
+    const { pdfName } = request.params
+
+    const pdfFilePath = path.join(__dirname, '..', 'pdfs', pdfName)
+
+    return response.setHeader('Content-Type', 'application/pdf').sendFile(pdfFilePath)
   }
 }

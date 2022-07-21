@@ -1,6 +1,9 @@
 import { Router } from 'express'
 const router = Router()
 
+//middlewares
+import rateLimit from '@middlewares/rateLimit'
+
 //controllers
 import PdfController from '@controllers/pdfController'
 import IndexController from '@controllers/IndexController'
@@ -9,7 +12,7 @@ import IndexController from '@controllers/IndexController'
 router.get('/', IndexController.index)
 
 //pdf routes
-router.post('/pdf', PdfController.create)
+router.post('/pdf', rateLimit, PdfController.create)
 router.get('/pdf/:pdfName', PdfController.getPdf)
 
 export default router

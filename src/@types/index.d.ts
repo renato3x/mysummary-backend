@@ -16,3 +16,12 @@ export interface PdfContent {
   title: string
   paragraphs: string[]
 }
+
+export interface PdfCreationRequestBody {
+  title: string
+  url: string
+}
+
+export interface PdfCreationApiResponse {
+  pdfUrl: string
+}
