@@ -1,4 +1,4 @@
-import { request as req, response as res } from 'express'
+/* import { request as req, response as res } from 'express'
 import textSummarizeService from '../services/textSummarizeService'
 import htmlService from '../services/htmlGeneratorService'
 import pdfService from '../services/pdfGeneratorService'
@@ -47,5 +47,21 @@ export default {
     const pdfFilePath = path.join(__dirname, '..', 'pdfs', pdfName)
 
     return response.sendFile(pdfFilePath)
+  }
+}
+ */
+import { Request, Response } from 'express'
+
+export default class PdfController {
+  static async create(request: Request, response: Response) {
+    return response.status(500).json({
+      message: 'route not implemented'
+    })
+  }
+
+  static async getPdf(request: Request, response: Response) {
+    return response.status(500).json({
+      message: 'route not implemented'
+    })
   }
 }

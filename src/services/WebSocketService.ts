@@ -7,7 +7,7 @@ import path from "path"
 export default class WebSocketService {
   private requestQuantity: number = 0
   private requestId: string = ''
-  private requestService: RequestService
+  private requestService: RequestService = new RequestService()
 
   constructor(
     private socket: socketIo.Server
