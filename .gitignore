@@ -8,3 +8,4 @@ dist/
 
 #ignoring all pdf files
 src/pdfs/**/*.pdf
+tests/config/pdfs

@@ -1,4 +1,4 @@
-import Request from '../database/models/Request'
+import Request from "@database/models/Request"
 
 export default class RequestService {
   async createNewRequestInDatabase() {
@@ -20,28 +20,38 @@ export default class RequestService {
         return request._id.toString()
       }
     } catch (error) {
-      console.log(error)
+      throw new Error('Error at create new request')
     }
   }
 
-  async updateRequestQuantity(id) {
+  async updateRequestQuantity(id: any) {
     try {
       const request = await Request.findById(id)
-      request.quantity++
-      await request.save()
 
-      return request.quantity
+      if (request) {
+        request.quantity++
+        await request.save()
+  
+        return request.quantity
+      }
+
+      throw new Error('Request do not exists')
     } catch (error) {
-      console.log(error)
+      throw new Error('Error at update request')
     }
   }
 
-  async getRequestQuantity(id) {
+  async getRequestQuantity(id: any) {
     try {
       const request = await Request.findById(id)
-      return request.quantity
+      
+      if (request) {
+        return request.quantity
+      }
+
+      throw new Error('Request do not exists')
     } catch (error) {
-      console.log(error)
+      throw new Error('Error at retrieve the request quantity')
     }
   }
 }
